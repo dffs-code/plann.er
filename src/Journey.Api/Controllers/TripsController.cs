@@ -14,7 +14,7 @@ namespace Journey.Api.Controllers
     {
         [HttpPost]
         [ProducesResponseType(typeof(ResponseShortTripJson), StatusCodes.Status201Created)]
-        [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ResponseErrorsJson), StatusCodes.Status400BadRequest)]
         public IActionResult Register([FromBody] RequestRegisterTripJson request)
         {
             var useCase = new RegisterTripUseCase();
@@ -37,13 +37,13 @@ namespace Journey.Api.Controllers
         [HttpGet]
         [Route("{id}")]
         [ProducesResponseType(typeof(ResponseTripJson), StatusCodes.Status200OK)]
-        [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(ResponseErrorsJson), StatusCodes.Status404NotFound)]
         public IActionResult GetById([FromRoute]Guid id)
         {
             var useCase = new GetTripByIdUseCase();
 
             var response = useCase.Execute(id);
-
+             
 
             return Ok(response);
         }
