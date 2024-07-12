@@ -1,36 +1,31 @@
 ### Plann.er API
 
-O projeto **Plann.er** tem como objetivo ajudar o usuário a organizar viagens à trabalho ou lazer. Com essa API, você pode criar viagens, planejar atividades diárias e gerenciar participantes.
+O projeto **Plann.er** tem como objetivo ajudar o usuário a organizar viagens à trabalho ou lazer. Com essa API, você pode criar viagens e planejar atividades diárias.
 
 #### Funcionalidades
 
 - Criar e gerenciar viagens.
 - Adicionar e organizar atividades diárias para cada viagem.
-- Convidar e confirmar participantes para as viagens.
-- Enviar convites por e-mail para participantes.
 
 ### Endpoints Principais
 
 #### Viagens
-- **Criar viagem**: `POST /trips`
-- **Obter detalhes da viagem**: `GET /trips/{tripId}`
-- **Atualizar viagem**: `PUT /trips/{tripId}`
-- **Confirmar viagem**: `GET /trips/{tripId}/confirm`
+- **Criar viagem**: `POST api/trips`
+- **Obter detalhes da viagem**: `GET /api/trips/{tripId}`
+- **Atualizar viagem**: `PUT /api/trips/{tripId}`
+- **Deletar viagem**: `DELETE /api/trips/{tripId}`
 
 #### Atividades
-- **Adicionar atividade**: `POST /trips/{tripId}/activities`
-- **Obter atividades**: `GET /trips/{tripId}/activities`
-
-#### Participantes
-- **Convidar participante**: `POST /trips/{tripId}/invites`
-- **Confirmar participante**: `PATCH /participants/{participantId}/confirm`
-- **Obter participantes**: `GET /trips/{tripId}/participants`
+- **Adicionar atividade**: `POST /api/trips/{tripId}/activity`
+- **Completar atividade**: `PUT /api/trips/{tripId}/activity/{activityId}/complete`
+- **Deletar atividade**: `POST /api/trips/{tripId}/activity/{activityId}`
+- **Obter atividades**: `GET /api/trips/{tripId}/activities`
 
 ### Rodando a API localmente
 
 #### Pré-requisitos
 
-- .NET SDK 6.0 ou superior
+- .NET SDK 8.0 ou superior
 - Visual Studio ou VS Code
 
 #### Passos
@@ -41,11 +36,10 @@ O projeto **Plann.er** tem como objetivo ajudar o usuário a organizar viagens �
     cd plann.er
     ```
 
-2. Configure a string de conexão com o banco de dados no arquivo `appsettings.json`:
-    ```json
-    "ConnectionStrings": {
-        "DefaultConnection": "Data Source=plann-er.db"
-    }
+2. Configure a string de conexão com o banco de dados na classe `JourneyDbContext`, dentro do projeto `Journey.Infrastructure`:
+
+    ```csharp
+        optionsBuilder.UseSqlite("Data Source=Your-Path\\JourneyDatabase.db");
     ```
 
 3. Restaure os pacotes NuGet:
@@ -53,17 +47,12 @@ O projeto **Plann.er** tem como objetivo ajudar o usuário a organizar viagens �
     dotnet restore
     ```
 
-4. Execute as migrações para criar o banco de dados:
-    ```bash
-    dotnet ef database update
-    ```
-
-5. Inicie a aplicação:
+4. Inicie a aplicação:
     ```bash
     dotnet run
     ```
 
-6. A API estará disponível em `https://localhost:5001`.
+5. A API estará disponível em `https://localhost:5001`.
 
 ### Especificações da API
 
@@ -76,13 +65,3 @@ Se você deseja contribuir com este projeto, sinta-se à vontade para abrir uma 
 ### Licença
 
 Este projeto está licenciado sob a [MIT License](LICENSE).
-
----
-
-### Contato
-
-Para mais informações, entre em contato através do e-mail: [contato@plannerapi.com](mailto:contato@plannerapi.com)
-
----
-
-*Arquivo gerado automaticamente a partir das especificações da API no arquivo `planner.json`.*
