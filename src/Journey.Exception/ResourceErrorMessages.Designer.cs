@@ -63,9 +63,9 @@ namespace Journey.Exception {
         /// <summary>
         ///   Looks up a localized string similar to The date of the trip must be later than today..
         /// </summary>
-        public static string DATE_TRIP_MUST_BE_LATHER_THAN_TODAY {
+        public static string DATE_TRIP_MUST_BE_LATER_THAN_TODAY {
             get {
-                return ResourceManager.GetString("DATE_TRIP_MUST_BE_LATHER_THAN_TODAY", resourceCulture);
+                return ResourceManager.GetString("DATE_TRIP_MUST_BE_LATER_THAN_TODAY", resourceCulture);
             }
         }
         
@@ -84,6 +84,15 @@ namespace Journey.Exception {
         public static string NAME_EMPTY {
             get {
                 return ResourceManager.GetString("NAME_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Trip not found..
+        /// </summary>
+        public static string TRIP_NOT_FOUND {
+            get {
+                return ResourceManager.GetString("TRIP_NOT_FOUND", resourceCulture);
             }
         }
     }

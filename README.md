@@ -37,8 +37,8 @@ O projeto **Plann.er** tem como objetivo ajudar o usuário a organizar viagens �
 
 1. Clone o repositório:
     ```bash
-    git clone https://github.com/seu-usuario/plann-er-api.git
-    cd plann-er-api
+    git clone https://github.com/dffs-code/plann.er.git
+    cd plann.er
     ```
 
 2. Configure a string de conexão com o banco de dados no arquivo `appsettings.json`:

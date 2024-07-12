@@ -1,5 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Journey.Infrastructure.Entities;
+﻿using Journey.Infrastructure.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace Journey.Infrastructure
 {
