@@ -1,7 +1,4 @@
-﻿using Journey.Application.UseCases.Activities.Complete;
-using Journey.Application.UseCases.Activities.Delete;
-using Journey.Application.UseCases.Activities.Register;
-using Journey.Application.UseCases.Trips.Delete;
+﻿using Journey.Application.UseCases.Trips.Delete;
 using Journey.Application.UseCases.Trips.GetAll;
 using Journey.Application.UseCases.Trips.GetById;
 using Journey.Application.UseCases.Trips.Register;

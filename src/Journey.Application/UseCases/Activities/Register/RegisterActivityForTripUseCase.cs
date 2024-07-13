@@ -5,7 +5,6 @@ using Journey.Exception;
 using Journey.Exception.ExceptionsBase;
 using Journey.Infrastructure;
 using Journey.Infrastructure.Entities;
-using Microsoft.EntityFrameworkCore;
 
 namespace Journey.Application.UseCases.Activities.Register
 {

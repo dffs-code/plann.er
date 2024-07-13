@@ -1,5 +1,4 @@
-﻿using Journey.Communication.Responses;
-using Journey.Exception;
+﻿using Journey.Exception;
 using Journey.Exception.ExceptionsBase;
 using Journey.Infrastructure;
 
