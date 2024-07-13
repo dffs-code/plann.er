@@ -58,6 +58,38 @@ O projeto **Plann.er** tem como objetivo ajudar o usuário a organizar viagens �
 
 A API segue as especificações OpenAPI 3.0, com a documentação disponível na rota `/swagger` após iniciar a aplicação.
 
+### Banco de Dados
+
+O banco de dados utilizado é o SQLite e sua estrutura é composta pelas seguintes tabelas:
+
+```sql
+CREATE TABLE "Activities" (
+	"Id"	TEXT NOT NULL,
+	"Name"	TEXT NOT NULL,
+	"Date"	TEXT NOT NULL,
+	"Status"	INTEGER NOT NULL DEFAULT 0,
+	"TripId"	TEXT NOT NULL,
+	PRIMARY KEY("Id"),
+	FOREIGN KEY("TripId") REFERENCES Trips(Id) ON DELETE CASCADE
+);
+
+CREATE TABLE "Trips" (
+	"Id"	TEXT NOT NULL,
+	"Name"	TEXT NOT NULL,
+	"StartDate"	TEXT NOT NULL,
+	"EndDate"	TEXT NOT NULL,
+	PRIMARY KEY("Id")
+);
+
+CREATE TABLE "Users" (
+	"Id"	TEXT NOT NULL,
+	"Username"	TEXT NOT NULL,
+	"Password"	TEXT NOT NULL,
+	"Salt"	TEXT NOT NULL,
+	PRIMARY KEY("Id")
+);
+```
+
 ### Contribuindo
 
 Se você deseja contribuir com este projeto, sinta-se à vontade para abrir uma issue ou enviar um pull request no repositório do GitHub.
