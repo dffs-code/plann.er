@@ -7,7 +7,7 @@ namespace Journey.Infrastructure
     {
         public DbSet<Trip> Trips { get; set; }
         public DbSet<Activity> Activities { get; set; } 
-
+        public DbSet<User> Users { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlite("Data Source=C:\\Users\\your-user\\Desktop\\Workspace\\JourneyDatabase.db");

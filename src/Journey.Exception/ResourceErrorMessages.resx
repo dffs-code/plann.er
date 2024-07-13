@@ -132,10 +132,19 @@
   <data name="NAME_EMPTY" xml:space="preserve">
     <value>The name cannot be empty.</value>
   </data>
+  <data name="PASSWORD_EMPTY" xml:space="preserve">
+    <value>The password cannot be empty.</value>
+  </data>
   <data name="TRIP_NOT_FOUND" xml:space="preserve">
     <value>Trip not found.</value>
   </data>
   <data name="UNKNOWN_ERROR" xml:space="preserve">
     <value>Unknown error</value>
+  </data>
+  <data name="USERNAME_EMPTY" xml:space="preserve">
+    <value>The username cannot be empty.</value>
+  </data>
+  <data name="WRONG_USERNAME_OR_PASSWORD" xml:space="preserve">
+    <value>The given username or password is wrong.</value>
   </data>
 </root>

@@ -106,6 +106,15 @@ namespace Journey.Exception {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The password cannot be empty..
+        /// </summary>
+        public static string PASSWORD_EMPTY {
+            get {
+                return ResourceManager.GetString("PASSWORD_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Trip not found..
         /// </summary>
         public static string TRIP_NOT_FOUND {
@@ -120,6 +129,24 @@ namespace Journey.Exception {
         public static string UNKNOWN_ERROR {
             get {
                 return ResourceManager.GetString("UNKNOWN_ERROR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The username cannot be empty..
+        /// </summary>
+        public static string USERNAME_EMPTY {
+            get {
+                return ResourceManager.GetString("USERNAME_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The given username or password is wrong..
+        /// </summary>
+        public static string WRONG_USERNAME_OR_PASSWORD {
+            get {
+                return ResourceManager.GetString("WRONG_USERNAME_OR_PASSWORD", resourceCulture);
             }
         }
     }
