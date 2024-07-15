@@ -1,8 +1,10 @@
-﻿using Journey.Application.UseCases.Users.AuthenticateUser;
+﻿using Journey.Api.Services;
+using Journey.Application.UseCases.Users.AuthenticateUser;
 using Journey.Application.UseCases.Users.GetAll;
 using Journey.Application.UseCases.Users.Register;
 using Journey.Communication.Requests;
 using Journey.Communication.Responses;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Journey.Api.Controllers
@@ -23,7 +25,7 @@ namespace Journey.Api.Controllers
         }
 
         [HttpPost("auth")]
-        [ProducesResponseType(typeof(ResponseShortUserJson), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ResponseAuthenticatedUser), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ResponseErrorsJson), StatusCodes.Status400BadRequest)]
         public IActionResult Authenticate([FromBody] RequestRegisterUserJson request)
         {
@@ -31,11 +33,19 @@ namespace Journey.Api.Controllers
 
             var result = useCase.Execute(request.Username, request.Password);
 
-            return Ok(result);
+            var token = new TokenService().GenerateToken(result);
+
+            return Ok(new ResponseAuthenticatedUser
+            {
+                Id = result.Id,
+                Username = result.Username,
+                Token = token
+            });
         }
 
         [HttpGet]
         [ProducesResponseType(typeof(ResponseUsersJson), StatusCodes.Status200OK)]
+        [Authorize]
         public IActionResult GetAll()
         {
             var useCase = new GetAllUsersUseCase();

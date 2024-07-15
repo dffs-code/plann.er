@@ -145,6 +145,6 @@
     <value>The username cannot be empty.</value>
   </data>
   <data name="WRONG_USERNAME_OR_PASSWORD" xml:space="preserve">
-    <value>The given username or password is wrong.</value>
+    <value>Invalid Username or Password.</value>
   </data>
 </root>

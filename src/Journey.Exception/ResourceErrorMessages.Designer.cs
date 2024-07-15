@@ -142,7 +142,7 @@ namespace Journey.Exception {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The given username or password is wrong..
+        ///   Looks up a localized string similar to Invalid Username or Password..
         /// </summary>
         public static string WRONG_USERNAME_OR_PASSWORD {
             get {
