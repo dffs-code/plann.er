@@ -4,6 +4,7 @@ using Journey.Application.UseCases.Trips.GetById;
 using Journey.Application.UseCases.Trips.Register;
 using Journey.Communication.Requests;
 using Journey.Communication.Responses;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Journey.Api.Controllers
@@ -13,8 +14,10 @@ namespace Journey.Api.Controllers
     public class TripsController : ControllerBase
     {
         [HttpPost]
+        [Authorize]
         [ProducesResponseType(typeof(ResponseShortTripJson), StatusCodes.Status201Created)]
         [ProducesResponseType(typeof(ResponseErrorsJson), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status401Unauthorized)]
         public IActionResult Register([FromBody] RequestRegisterTripJson request)
         {
             var useCase = new RegisterTripUseCase();
@@ -50,8 +53,10 @@ namespace Journey.Api.Controllers
 
         [HttpDelete]
         [Route("{id}")]
+        [Authorize]
         [ProducesResponseType(typeof(ResponseTripJson), StatusCodes.Status204NoContent)]
         [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status401Unauthorized)]
         public IActionResult Delete([FromRoute] Guid id)
         {
             var useCase = new DeleteTripByIdUseCase();

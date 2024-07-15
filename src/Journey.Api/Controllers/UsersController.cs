@@ -44,8 +44,9 @@ namespace Journey.Api.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(typeof(ResponseUsersJson), StatusCodes.Status200OK)]
         [Authorize]
+        [ProducesResponseType(typeof(ResponseUsersJson), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status401Unauthorized)]
         public IActionResult GetAll()
         {
             var useCase = new GetAllUsersUseCase();

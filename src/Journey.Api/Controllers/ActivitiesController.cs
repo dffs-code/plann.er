@@ -4,6 +4,7 @@ using Journey.Application.UseCases.Activities.GetAllByTripId;
 using Journey.Application.UseCases.Activities.Register;
 using Journey.Communication.Requests;
 using Journey.Communication.Responses;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Journey.Api.Controllers
@@ -15,9 +16,11 @@ namespace Journey.Api.Controllers
 
         [HttpPost]
         [Route("{tripId}/activity")]
+        [Authorize]
         [ProducesResponseType(typeof(ResponseActivityJson), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ResponseErrorsJson), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(typeof(ResponseErrorsJson), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status401Unauthorized)]
         public IActionResult RegisterActivity(
            [FromRoute] Guid tripId,
            [FromBody] RequestRegisterActivityJson request)
@@ -31,6 +34,7 @@ namespace Journey.Api.Controllers
 
         [HttpPut]
         [Route("{tripId}/activity/{activityId}/complete")]
+        [Authorize]
         [ProducesResponseType(typeof(ResponseActivityJson), StatusCodes.Status204NoContent)]
         [ProducesResponseType(typeof(ResponseErrorsJson), StatusCodes.Status404NotFound)]
         public IActionResult CompleteActivity(
@@ -46,6 +50,7 @@ namespace Journey.Api.Controllers
 
         [HttpDelete]
         [Route("{tripId}/activity/{activityId}/")]
+        [Authorize]
         [ProducesResponseType(typeof(ResponseActivityJson), StatusCodes.Status204NoContent)]
         [ProducesResponseType(typeof(ResponseErrorsJson), StatusCodes.Status404NotFound)]
         public IActionResult DeleteActivity(
