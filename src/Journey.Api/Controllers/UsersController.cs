@@ -27,7 +27,7 @@ namespace Journey.Api.Controllers
         [HttpPost("auth")]
         [ProducesResponseType(typeof(ResponseAuthenticatedUser), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ResponseErrorsJson), StatusCodes.Status400BadRequest)]
-        public IActionResult Authenticate([FromBody] RequestRegisterUserJson request)
+        public IActionResult Authenticate([FromBody] RequestAuthenticateUserJson request)
         {
             var useCase = new AuthenticateUserUseCase();
 
@@ -39,7 +39,8 @@ namespace Journey.Api.Controllers
             {
                 Id = result.Id,
                 Username = result.Username,
-                Token = token
+                Token = token,
+                Email = result.Email,
             });
         }
 

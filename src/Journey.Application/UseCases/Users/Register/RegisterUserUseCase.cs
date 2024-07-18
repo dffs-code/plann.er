@@ -22,7 +22,9 @@ namespace Journey.Application.UseCases.Users.Register
             {
                 Username = request.Username,
                 Password = hashedPassword,
-                Salt = salt
+                Salt = salt,
+                Email = request.Email,
+
             };
 
             dbContext.Users.Add(entity);
@@ -33,6 +35,7 @@ namespace Journey.Application.UseCases.Users.Register
             {
                 Id = entity.Id,
                 Username = entity.Username,
+                Email = entity.Email,
             };
         }
 

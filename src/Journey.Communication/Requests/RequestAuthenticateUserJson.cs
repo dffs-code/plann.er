@@ -1,11 +1,9 @@
 ﻿namespace Journey.Communication.Requests
 {
-    public class RequestRegisterUserJson
+    public class RequestAuthenticateUserJson
     {
         public string Username { get; set; } = string.Empty;
 
         public string Password { get; set; } = string.Empty;
-
-        public string Email { get; set; } = string.Empty;
     }
 }
