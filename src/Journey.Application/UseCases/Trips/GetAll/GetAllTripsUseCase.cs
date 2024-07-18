@@ -1,5 +1,6 @@
 ﻿using Journey.Communication.Responses;
 using Journey.Infrastructure;
+using Microsoft.EntityFrameworkCore;
 
 namespace Journey.Application.UseCases.Trips.GetAll
 {
@@ -10,7 +11,7 @@ namespace Journey.Application.UseCases.Trips.GetAll
             
             var dbContext = new JourneyDbContext();
 
-            var trips = dbContext.Trips.ToList();
+            var trips = dbContext.Trips.Include(trip => trip.User).ToList();
 
             return new ResponseTripsJson
             {
@@ -18,7 +19,13 @@ namespace Journey.Application.UseCases.Trips.GetAll
                 {
                     Id = trip.Id,
                     EndDate = trip.EndDate,
-                    StartDate = trip.StartDate
+                    StartDate = trip.StartDate,
+                    Owner = new ResponseShortUserJson
+                    {
+                        Id = trip.User.Id,
+                        Email = trip.User.Email,
+                        Username = trip.User.Username
+                    },
                 }).ToList(),
             };
         }

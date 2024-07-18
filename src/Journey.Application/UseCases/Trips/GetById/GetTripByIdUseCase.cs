@@ -15,6 +15,7 @@ namespace Journey.Application.UseCases.Trips.GetById
             var trip = dbContext
                 .Trips
                 .Include(trip => trip.Activities)
+                .Include(trip => trip.User)
                 .FirstOrDefault(trip => trip.Id == id);
 
             if(trip is null)
@@ -28,6 +29,12 @@ namespace Journey.Application.UseCases.Trips.GetById
                 Name = trip.Name,
                 StartDate = trip.StartDate,
                 EndDate = trip.EndDate,
+                Owner = new ResponseShortUserJson
+                {
+                    Id = trip.User.Id,
+                    Email = trip.User.Email,
+                    Username = trip.User.Username
+                },
                 Activities = trip.Activities.Select(activity => new ResponseActivityJson
                 {
                     Id = activity.Id,
