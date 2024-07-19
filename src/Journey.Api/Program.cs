@@ -1,8 +1,10 @@
 using Journey.Api;
 using Journey.Api.Filters;
+using Journey.Api.Jobs;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Quartz;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -59,7 +61,24 @@ builder.Services.AddSwaggerGen(option =>
 
 builder.Services.AddMvc(config => config.Filters.Add(typeof(ExceptionFilter)));
 
+var jobKey = JobKey.Create(nameof(CheckTripsJob));
+builder.Services.AddQuartz(opt =>
+{
+    opt.AddJob<CheckTripsJob>(jobKey).AddTrigger(trigger => trigger.StartNow()
+    .ForJob(jobKey)
+    .WithSchedule(CronScheduleBuilder.DailyAtHourAndMinute(00,00)));
+    
+});
+builder.Services.AddQuartzHostedService(opt =>
+{
+    opt.WaitForJobsToComplete = true;
+});
+
 var app = builder.Build();
+
+var schedulerFactory = app.Services.GetRequiredService<ISchedulerFactory>();
+var scheduler = await schedulerFactory.GetScheduler();
+
 
 if (app.Environment.IsDevelopment())
 {
