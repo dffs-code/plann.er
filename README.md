@@ -71,23 +71,29 @@ CREATE TABLE "Activities" (
 	"TripId"	TEXT NOT NULL,
 	PRIMARY KEY("Id"),
 	FOREIGN KEY("TripId") REFERENCES Trips(Id) ON DELETE CASCADE
-);
+)
 
 CREATE TABLE "Trips" (
 	"Id"	TEXT NOT NULL,
 	"Name"	TEXT NOT NULL,
 	"StartDate"	TEXT NOT NULL,
 	"EndDate"	TEXT NOT NULL,
-	PRIMARY KEY("Id")
-);
+	"UserId"	TEXT NOT NULL,
+	"Country"	TEXT NOT NULL,
+	"City"	TEXT NOT NULL,
+	"FullAddress"	TEXT NOT NULL,
+	PRIMARY KEY("Id"),
+	FOREIGN KEY("UserId") REFERENCES "Users"("Id") ON DELETE CASCADE
+)
 
 CREATE TABLE "Users" (
 	"Id"	TEXT NOT NULL,
 	"Username"	TEXT NOT NULL,
 	"Password"	TEXT NOT NULL,
 	"Salt"	TEXT NOT NULL,
+	"Email"	TEXT NOT NULL,
 	PRIMARY KEY("Id")
-);
+)
 ```
 
 ### Contribuindo
