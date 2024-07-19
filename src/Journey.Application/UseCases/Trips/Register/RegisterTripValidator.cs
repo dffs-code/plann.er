@@ -17,6 +17,9 @@ namespace Journey.Application.UseCases.Trips.Register
             RuleFor(request => request)
                 .Must(request => request.EndDate.Date >= request.StartDate.Date)
                 .WithMessage(ResourceErrorMessages.END_DATE_TRIP_MUST_BE_LATER_START_DATE);
+
+            RuleFor(request => request.Country).NotEmpty().WithMessage(ResourceErrorMessages.EMPTY_COUNTRY);
+            RuleFor(request => request.City).NotEmpty().WithMessage(ResourceErrorMessages.EMPTY_CITY);
             
         }
     }

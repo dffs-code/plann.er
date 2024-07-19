@@ -88,6 +88,24 @@ namespace Journey.Exception {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The city cannot be empty..
+        /// </summary>
+        public static string EMPTY_CITY {
+            get {
+                return ResourceManager.GetString("EMPTY_CITY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The country cannot be empty..
+        /// </summary>
+        public static string EMPTY_COUNTRY {
+            get {
+                return ResourceManager.GetString("EMPTY_COUNTRY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The email address is required..
         /// </summary>
         public static string EMPTY_EMAIL {

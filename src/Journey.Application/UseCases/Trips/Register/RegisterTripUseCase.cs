@@ -20,6 +20,9 @@ namespace Journey.Application.UseCases.Trips.Register
                 Name = request.Name,
                 StartDate = request.StartDate,
                 EndDate = request.EndDate,
+                Country = request.Country,
+                City = request.City,
+                FullAddress = request.FullAddress,
             };
 
             dbContext.Trips.Add(entity);
@@ -31,7 +34,10 @@ namespace Journey.Application.UseCases.Trips.Register
                 EndDate = entity.EndDate,
                 StartDate = entity.StartDate,
                 Name = entity.Name,
-                Id = entity.Id
+                Id = entity.Id,
+                Country = entity.Country,
+                City = entity.City,
+                FullAddress = entity.FullAddress
             };
         }
 

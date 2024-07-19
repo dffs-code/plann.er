@@ -29,6 +29,9 @@ namespace Journey.Application.UseCases.Trips.GetById
                 Name = trip.Name,
                 StartDate = trip.StartDate,
                 EndDate = trip.EndDate,
+                Country = trip.Country,
+                City = trip.City,
+                FullAddress = trip.FullAddress,
                 Owner = new ResponseShortUserJson
                 {
                     Id = trip.User.Id,

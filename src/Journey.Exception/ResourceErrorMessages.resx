@@ -126,6 +126,12 @@
   <data name="DATE_TRIP_MUST_BE_LATER_THAN_TODAY" xml:space="preserve">
     <value>The date of the trip must be later than today.</value>
   </data>
+  <data name="EMPTY_CITY" xml:space="preserve">
+    <value>The city cannot be empty.</value>
+  </data>
+  <data name="EMPTY_COUNTRY" xml:space="preserve">
+    <value>The country cannot be empty.</value>
+  </data>
   <data name="EMPTY_EMAIL" xml:space="preserve">
     <value>The email address is required.</value>
   </data>
