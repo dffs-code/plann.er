@@ -40,8 +40,8 @@ O projeto **Plann.er** tem como objetivo ajudar o usu√°rio a organizar viagens √
 
     ```json
       "ConnectionStrings": {
-				"DefaultConnection": "Data Source=C:\\YOUR-PATH\\JourneyDatabase.db"
-			},
+	"DefaultConnection": "Data Source=C:\\YOUR-PATH\\JourneyDatabase.db"
+	},
     ```
 
 3. Restaure os pacotes NuGet:
