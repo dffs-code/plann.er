@@ -15,11 +15,9 @@ namespace Journey.Api.Services
 
             var tokenDescriptor = new SecurityTokenDescriptor
             {
-                Subject = new ClaimsIdentity(new[]
-                {
-                    new Claim(ClaimTypes.Name, user.Username),
-                    new Claim(ClaimTypes.Name, user.Id.ToString())
-                }), 
+                Subject = new ClaimsIdentity([
+                    new Claim(ClaimTypes.NameIdentifier, user.Id.ToString())
+                ]), 
                 Expires = DateTime.UtcNow.AddHours(24),
                 SigningCredentials = new SigningCredentials(
                     new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)

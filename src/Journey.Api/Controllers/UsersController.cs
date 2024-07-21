@@ -16,7 +16,17 @@ namespace Journey.Api.Controllers
         private readonly AuthenticateUserUseCase _authenticateUserUseCase;
         private readonly GetAllUsersUseCase _getAllUsersUseCase;
         private readonly RegisterUserUseCase _registerUserUseCase;
-        
+
+        public UsersController(
+            AuthenticateUserUseCase authenticateUserUseCase, 
+            GetAllUsersUseCase getAllUsersUseCase, 
+            RegisterUserUseCase registerUserUseCase)
+        {
+            _authenticateUserUseCase = authenticateUserUseCase;
+            _getAllUsersUseCase = getAllUsersUseCase;
+            _registerUserUseCase = registerUserUseCase;
+        }
+
         [HttpPost]
         [ProducesResponseType(typeof(ResponseShortUserJson), StatusCodes.Status201Created)]
         [ProducesResponseType(typeof(ResponseErrorsJson), StatusCodes.Status400BadRequest)]

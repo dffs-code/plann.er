@@ -88,6 +88,15 @@ namespace Journey.Exception {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The address cannot be empty..
+        /// </summary>
+        public static string EMPTY_ADDRESS {
+            get {
+                return ResourceManager.GetString("EMPTY_ADDRESS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The city cannot be empty..
         /// </summary>
         public static string EMPTY_CITY {
@@ -165,6 +174,15 @@ namespace Journey.Exception {
         public static string UNKNOWN_ERROR {
             get {
                 return ResourceManager.GetString("UNKNOWN_ERROR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your user is not authorized in this action..
+        /// </summary>
+        public static string USER_UNAUTHORIZED {
+            get {
+                return ResourceManager.GetString("USER_UNAUTHORIZED", resourceCulture);
             }
         }
         

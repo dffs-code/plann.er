@@ -9,6 +9,7 @@ using Journey.Application.UseCases.Trips.Delete;
 using Journey.Application.UseCases.Trips.GetAll;
 using Journey.Application.UseCases.Trips.GetById;
 using Journey.Application.UseCases.Trips.Register;
+using Journey.Application.UseCases.Trips.Update;
 using Journey.Application.UseCases.Users.AuthenticateUser;
 using Journey.Application.UseCases.Users.GetAll;
 using Journey.Application.UseCases.Users.Register;
@@ -95,6 +96,7 @@ builder.Services.AddTransient<GetAllTripsUseCase>();
 builder.Services.AddTransient<GetTripByIdUseCase>();
 builder.Services.AddTransient<RegisterTripUseCase>();
 builder.Services.AddTransient<DeleteTripByIdUseCase>();
+builder.Services.AddTransient<UpdateTripUseCase>();
 
 builder.Services.AddTransient<GetAllUsersUseCase>();
 builder.Services.AddTransient<AuthenticateUserUseCase>();

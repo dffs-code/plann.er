@@ -20,7 +20,7 @@ namespace Journey.Application.UseCases.Trips.Register
 
             RuleFor(request => request.Country).NotEmpty().WithMessage(ResourceErrorMessages.EMPTY_COUNTRY);
             RuleFor(request => request.City).NotEmpty().WithMessage(ResourceErrorMessages.EMPTY_CITY);
-            
+            RuleFor(request => request.FullAddress).NotEmpty().WithMessage(ResourceErrorMessages.EMPTY_ADDRESS);
         }
     }
 }

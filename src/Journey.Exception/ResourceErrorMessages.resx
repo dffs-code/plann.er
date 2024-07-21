@@ -126,6 +126,9 @@
   <data name="DATE_TRIP_MUST_BE_LATER_THAN_TODAY" xml:space="preserve">
     <value>The date of the trip must be later than today.</value>
   </data>
+  <data name="EMPTY_ADDRESS" xml:space="preserve">
+    <value>The address cannot be empty.</value>
+  </data>
   <data name="EMPTY_CITY" xml:space="preserve">
     <value>The city cannot be empty.</value>
   </data>
@@ -155,6 +158,9 @@
   </data>
   <data name="USERNAME_EMPTY" xml:space="preserve">
     <value>The username cannot be empty.</value>
+  </data>
+  <data name="USER_UNAUTHORIZED" xml:space="preserve">
+    <value>Your user is not authorized in this action.</value>
   </data>
   <data name="WRONG_USERNAME_OR_PASSWORD" xml:space="preserve">
     <value>Invalid Username or Password.</value>

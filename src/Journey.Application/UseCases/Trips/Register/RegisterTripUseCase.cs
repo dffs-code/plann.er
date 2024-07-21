@@ -14,12 +14,13 @@ namespace Journey.Application.UseCases.Trips.Register
         {
             _dbContext = dbContext;
         }
-        public ResponseShortTripJson Execute(RequestRegisterTripJson request)
+        public ResponseShortTripJson Execute(RequestRegisterTripJson request, string userId)
         {
             Validate(request);
 
             var entity = new Trip
             {
+                UserId = Guid.Parse(userId),
                 Name = request.Name,
                 StartDate = request.StartDate,
                 EndDate = request.EndDate,
@@ -27,6 +28,8 @@ namespace Journey.Application.UseCases.Trips.Register
                 City = request.City,
                 FullAddress = request.FullAddress,
             };
+
+            var user = _dbContext.Users.FirstOrDefault(Users => Users.Id == Guid.Parse(userId));  
 
             _dbContext.Trips.Add(entity);
 
@@ -40,7 +43,14 @@ namespace Journey.Application.UseCases.Trips.Register
                 Id = entity.Id,
                 Country = entity.Country,
                 City = entity.City,
-                FullAddress = entity.FullAddress
+                FullAddress = entity.FullAddress,
+                UserId = userId,
+                User = new ResponseShortUserJson
+                {
+                    Id = user.Id,
+                    Email = user.Email,
+                    Username = user.Username
+                }
             };
         }
 

@@ -18,6 +18,19 @@ namespace Journey.Api.Controllers
         private readonly CompleteActivityForTripUseCase _completeActivityForTripUseCase;
         private readonly DeleteActivityForTripUseCase _deleteActivityForTripUseCase;
 
+        public ActivitiesController(
+            RegisterActivityForTripUseCase registerActivityForTripUseCase,
+            GetAllActivitiesByTripIdUseCase getAllActivitiesByTripIdUseCase,
+            CompleteActivityForTripUseCase completeActivityForTripUseCase,
+            DeleteActivityForTripUseCase deleteActivityForTripUseCase
+            )
+        {
+            _registerActivityForTripUseCase = registerActivityForTripUseCase;
+            _getAllActivitiesByTripIdUseCase = getAllActivitiesByTripIdUseCase;
+            _completeActivityForTripUseCase = completeActivityForTripUseCase;
+            _deleteActivityForTripUseCase = deleteActivityForTripUseCase;
+        }
+
         [HttpPost]
         [Route("{tripId}/activity")]
         [Authorize]

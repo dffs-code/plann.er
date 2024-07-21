@@ -2,10 +2,12 @@
 using Journey.Application.UseCases.Trips.GetAll;
 using Journey.Application.UseCases.Trips.GetById;
 using Journey.Application.UseCases.Trips.Register;
+using Journey.Application.UseCases.Trips.Update;
 using Journey.Communication.Requests;
 using Journey.Communication.Responses;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace Journey.Api.Controllers
 {
@@ -17,17 +19,21 @@ namespace Journey.Api.Controllers
         private readonly RegisterTripUseCase _registerTripUseCase;
         private readonly DeleteTripByIdUseCase _deleteTripByIdUseCase;
         private readonly GetTripByIdUseCase _getTripByIdUseCase;
+        private readonly UpdateTripUseCase _updateTripUseCase;
 
         public TripsController(
             GetAllTripsUseCase getAllTripsUseCase, 
             RegisterTripUseCase registerTripUseCase,
             DeleteTripByIdUseCase deleteTripByIdUseCase,
-            GetTripByIdUseCase getTripByIdUseCase)
+            GetTripByIdUseCase getTripByIdUseCase,
+            UpdateTripUseCase updateTripUseCase)
         {
             _getAllTripsUseCase = getAllTripsUseCase;
             _registerTripUseCase = registerTripUseCase;
             _deleteTripByIdUseCase = deleteTripByIdUseCase;
             _getTripByIdUseCase = getTripByIdUseCase;
+            _getTripByIdUseCase = getTripByIdUseCase;
+            _updateTripUseCase = updateTripUseCase;
         }
 
         [HttpPost]
@@ -37,7 +43,9 @@ namespace Journey.Api.Controllers
         [ProducesResponseType(typeof(string), StatusCodes.Status401Unauthorized)]
         public IActionResult Register([FromBody] RequestRegisterTripJson request)
         {
-            var response = _registerTripUseCase.Execute(request);
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            var response = _registerTripUseCase.Execute(request, userId);
             return Created(string.Empty, response);
         }
 
@@ -74,6 +82,20 @@ namespace Journey.Api.Controllers
             return NoContent();
         }
 
-        
+        [HttpPut]
+        [Route("{tripId}")]
+        [Authorize]
+        [ProducesResponseType(typeof(ResponseShortTripJson), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
+        public IActionResult Update([FromRoute] Guid tripId, [FromBody] RequestRegisterTripJson request)
+        {
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            var response = _updateTripUseCase.Execute(tripId, request, userId);
+
+            return Ok(response);
+        }
     }
 }

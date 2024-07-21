@@ -8,6 +8,7 @@ public class Trip
     public string Country { get; set; } = string.Empty;
     public string City { get; set; } = string.Empty;
     public string FullAddress { get; set; } = string.Empty;
+    public Guid UserId { get; set; }
     public IList<Activity> Activities { get; set; } = [];
     public User User { get; set; }
 }

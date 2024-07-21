@@ -29,7 +29,7 @@ namespace Journey.Api.Jobs
                 if(DateTime.Now < trip.StartDate &&  (trip.StartDate - DateTime.Now) <= threshold)
                 {
                     _emailService.SendEmail(
-                        toEmail: trip.Owner.Email,
+                        toEmail: trip.User.Email,
                         subject: $"Não perca sua viagem para {trip.Country}!",
                         body: new TripWarn(trip).HtmlContent,
                         isBodyHtml: true

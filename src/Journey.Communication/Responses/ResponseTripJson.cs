@@ -9,5 +9,5 @@ public class ResponseTripJson
     public string City { get; set; }
     public string FullAddress { get; set; }
     public IList<ResponseActivityJson> Activities { get; set; } = [];
-    public ResponseShortUserJson Owner { get; set; }
+    public ResponseShortUserJson User { get; set; }
 }

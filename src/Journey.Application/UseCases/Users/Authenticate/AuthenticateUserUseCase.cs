@@ -32,6 +32,7 @@ namespace Journey.Application.UseCases.Users.AuthenticateUser
             {
                 Id = user.Id,
                 Username = user.Username,
+                Email = user.Email
             };
         }
     }

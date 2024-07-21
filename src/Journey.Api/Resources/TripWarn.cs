@@ -60,7 +60,7 @@ namespace Journey.Api.Resources
                     <h1>Sua Viagem Está Próxima!</h1>
                 </div>
                 <div class='content'>
-                    <p>Olá, {trip.Owner.Username},</p>
+                    <p>Olá, {trip.User.Username},</p>
                     <p>Estamos escrevendo para lembrá-lo que sua viagem para {trip.Country} está se aproximando em {trip.StartDate.ToShortDateString()}. Por favor, atente-se ao seu calendário e às atividades planejadas para garantir que tudo esteja em ordem.</p>
                     <p>Não se esqueça de verificar os detalhes da sua viagem e preparar tudo com antecedência para evitar qualquer imprevisto.</p>
                     <p>Desejamos uma ótima viagem!</p>
