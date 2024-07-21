@@ -36,10 +36,12 @@ O projeto **Plann.er** tem como objetivo ajudar o usuário a organizar viagens �
     cd plann.er
     ```
 
-2. Configure a string de conexão com o banco de dados na classe `JourneyDbContext`, dentro do projeto `Journey.Infrastructure`:
+2. Configure a string de conexão com o banco de dados no arquivo `appsettings.json`:
 
-    ```csharp
-        optionsBuilder.UseSqlite("Data Source=Your-Path\\JourneyDatabase.db");
+    ```json
+      "ConnectionStrings": {
+				"DefaultConnection": "Data Source=C:\\YOUR-PATH\\JourneyDatabase.db"
+			},
     ```
 
 3. Restaure os pacotes NuGet:
