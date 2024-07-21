@@ -13,14 +13,16 @@ namespace Journey.Api.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
+        private readonly AuthenticateUserUseCase _authenticateUserUseCase;
+        private readonly GetAllUsersUseCase _getAllUsersUseCase;
+        private readonly RegisterUserUseCase _registerUserUseCase;
+        
         [HttpPost]
         [ProducesResponseType(typeof(ResponseShortUserJson), StatusCodes.Status201Created)]
         [ProducesResponseType(typeof(ResponseErrorsJson), StatusCodes.Status400BadRequest)]
         public IActionResult Register([FromBody] RequestRegisterUserJson request)
         {
-            var useCase = new RegisterUserUseCase();
-
-            var response = useCase.Execute(request);
+            var response = _registerUserUseCase.Execute(request);
             return Created(string.Empty, response);
         }
 
@@ -29,9 +31,7 @@ namespace Journey.Api.Controllers
         [ProducesResponseType(typeof(ResponseErrorsJson), StatusCodes.Status400BadRequest)]
         public IActionResult Authenticate([FromBody] RequestAuthenticateUserJson request)
         {
-            var useCase = new AuthenticateUserUseCase();
-
-            var result = useCase.Execute(request.Username, request.Password);
+            var result = _authenticateUserUseCase.Execute(request.Username, request.Password);
 
             var token = new TokenService().GenerateToken(result);
 
@@ -50,9 +50,7 @@ namespace Journey.Api.Controllers
         [ProducesResponseType(typeof(string), StatusCodes.Status401Unauthorized)]
         public IActionResult GetAll()
         {
-            var useCase = new GetAllUsersUseCase();
-
-            var result = useCase.Execute();
+            var result = _getAllUsersUseCase.Execute();
 
             return Ok(result);
         }

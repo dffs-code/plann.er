@@ -6,12 +6,15 @@ namespace Journey.Application.UseCases.Trips.GetAll
 {
     public class GetAllTripsUseCase
     {
+        private readonly JourneyDbContext _dbContext;
+
+        public GetAllTripsUseCase(JourneyDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
         public ResponseTripsJson Execute()
         {
-            
-            var dbContext = new JourneyDbContext();
-
-            var trips = dbContext.Trips.Include(trip => trip.User).ToList();
+            var trips = _dbContext.Trips.Include(trip => trip.User).ToList();
 
             return new ResponseTripsJson
             {

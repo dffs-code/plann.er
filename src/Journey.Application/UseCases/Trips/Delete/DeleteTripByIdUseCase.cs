@@ -7,12 +7,15 @@ namespace Journey.Application.UseCases.Trips.Delete
 {
     public class DeleteTripByIdUseCase
     {
+        private readonly JourneyDbContext _dbContext;
 
+        public DeleteTripByIdUseCase(JourneyDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
         public void Execute(Guid id)
         {
-            var dbContext = new JourneyDbContext();
-
-            var trip = dbContext
+            var trip = _dbContext
                 .Trips
                 .Include(trip => trip.Activities)
                 .FirstOrDefault(trip => trip.Id == id);
@@ -22,9 +25,9 @@ namespace Journey.Application.UseCases.Trips.Delete
                 throw new NotFoundException(ResourceErrorMessages.TRIP_NOT_FOUND);
             }
 
-            dbContext.Trips.Remove(trip);
+            _dbContext.Trips.Remove(trip);
 
-            dbContext.SaveChanges();
+            _dbContext.SaveChanges();
         }
     }
 }

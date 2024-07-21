@@ -1,7 +1,20 @@
 using Journey.Api;
 using Journey.Api.Filters;
 using Journey.Api.Jobs;
+using Journey.Application.UseCases.Activities.Complete;
+using Journey.Application.UseCases.Activities.Delete;
+using Journey.Application.UseCases.Activities.GetAllByTripId;
+using Journey.Application.UseCases.Activities.Register;
+using Journey.Application.UseCases.Trips.Delete;
+using Journey.Application.UseCases.Trips.GetAll;
+using Journey.Application.UseCases.Trips.GetById;
+using Journey.Application.UseCases.Trips.Register;
+using Journey.Application.UseCases.Users.AuthenticateUser;
+using Journey.Application.UseCases.Users.GetAll;
+using Journey.Application.UseCases.Users.Register;
+using Journey.Infrastructure;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Quartz;
@@ -11,6 +24,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
+
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<JourneyDbContext>(options =>
+    options.UseSqlite(connectionString));
 
 var key = Encoding.ASCII.GetBytes(Settings.Secret);
 builder.Services.AddAuthentication(options =>
@@ -73,6 +90,20 @@ builder.Services.AddQuartzHostedService(opt =>
 {
     opt.WaitForJobsToComplete = true;
 });
+
+builder.Services.AddTransient<GetAllTripsUseCase>();
+builder.Services.AddTransient<GetTripByIdUseCase>();
+builder.Services.AddTransient<RegisterTripUseCase>();
+builder.Services.AddTransient<DeleteTripByIdUseCase>();
+
+builder.Services.AddTransient<GetAllUsersUseCase>();
+builder.Services.AddTransient<AuthenticateUserUseCase>();
+builder.Services.AddTransient<RegisterUserUseCase>();
+
+builder.Services.AddTransient<GetAllActivitiesByTripIdUseCase>();
+builder.Services.AddTransient<RegisterActivityForTripUseCase>();
+builder.Services.AddTransient<DeleteActivityForTripUseCase>();
+builder.Services.AddTransient<CompleteActivityForTripUseCase>();
 
 var app = builder.Build();
 

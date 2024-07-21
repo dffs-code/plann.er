@@ -13,6 +13,23 @@ namespace Journey.Api.Controllers
     [ApiController]
     public class TripsController : ControllerBase
     {
+        private readonly GetAllTripsUseCase _getAllTripsUseCase;
+        private readonly RegisterTripUseCase _registerTripUseCase;
+        private readonly DeleteTripByIdUseCase _deleteTripByIdUseCase;
+        private readonly GetTripByIdUseCase _getTripByIdUseCase;
+
+        public TripsController(
+            GetAllTripsUseCase getAllTripsUseCase, 
+            RegisterTripUseCase registerTripUseCase,
+            DeleteTripByIdUseCase deleteTripByIdUseCase,
+            GetTripByIdUseCase getTripByIdUseCase)
+        {
+            _getAllTripsUseCase = getAllTripsUseCase;
+            _registerTripUseCase = registerTripUseCase;
+            _deleteTripByIdUseCase = deleteTripByIdUseCase;
+            _getTripByIdUseCase = getTripByIdUseCase;
+        }
+
         [HttpPost]
         [Authorize]
         [ProducesResponseType(typeof(ResponseShortTripJson), StatusCodes.Status201Created)]
@@ -20,9 +37,7 @@ namespace Journey.Api.Controllers
         [ProducesResponseType(typeof(string), StatusCodes.Status401Unauthorized)]
         public IActionResult Register([FromBody] RequestRegisterTripJson request)
         {
-            var useCase = new RegisterTripUseCase();
-
-            var response = useCase.Execute(request);
+            var response = _registerTripUseCase.Execute(request);
             return Created(string.Empty, response);
         }
 
@@ -30,9 +45,7 @@ namespace Journey.Api.Controllers
         [ProducesResponseType(typeof(ResponseTripsJson), StatusCodes.Status200OK)]
         public IActionResult GetAll()
         {
-            var useCase = new GetAllTripsUseCase();
-
-            var result = useCase.Execute();
+            var result = _getAllTripsUseCase.Execute();
 
             return Ok(result);
         }
@@ -43,10 +56,7 @@ namespace Journey.Api.Controllers
         [ProducesResponseType(typeof(ResponseErrorsJson), StatusCodes.Status404NotFound)]
         public IActionResult GetById([FromRoute]Guid id)
         {
-            var useCase = new GetTripByIdUseCase();
-
-            var response = useCase.Execute(id);
-             
+            var response = _getTripByIdUseCase.Execute(id);
 
             return Ok(response);
         }
@@ -59,10 +69,7 @@ namespace Journey.Api.Controllers
         [ProducesResponseType(typeof(string), StatusCodes.Status401Unauthorized)]
         public IActionResult Delete([FromRoute] Guid id)
         {
-            var useCase = new DeleteTripByIdUseCase();
-
-            useCase.Execute(id);
-
+            _deleteTripByIdUseCase.Execute(id);
 
             return NoContent();
         }

@@ -8,11 +8,15 @@ namespace Journey.Application.UseCases.Trips.GetById
 {
     public class GetTripByIdUseCase
     {
+        private readonly JourneyDbContext _dbContext;
+
+        public GetTripByIdUseCase(JourneyDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
         public ResponseTripJson Execute(Guid id)
         {
-            var dbContext = new JourneyDbContext();
-
-            var trip = dbContext
+            var trip = _dbContext
                 .Trips
                 .Include(trip => trip.Activities)
                 .Include(trip => trip.User)

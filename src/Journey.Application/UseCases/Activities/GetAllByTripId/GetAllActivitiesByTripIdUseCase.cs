@@ -5,12 +5,17 @@ namespace Journey.Application.UseCases.Activities.GetAllByTripId
 {
     public class GetAllActivitiesByTripIdUseCase
     {
+        private readonly JourneyDbContext _dbContext;
+
+        public GetAllActivitiesByTripIdUseCase(JourneyDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
+
         public ResponseActivitiesJson Execute(Guid tripId)
         {
             
-            var dbContext = new JourneyDbContext();
-
-            var activities = dbContext.Activities.Where(activity => activity.TripId == tripId).ToList();
+            var activities = _dbContext.Activities.Where(activity => activity.TripId == tripId).ToList();
 
             return new ResponseActivitiesJson
             {

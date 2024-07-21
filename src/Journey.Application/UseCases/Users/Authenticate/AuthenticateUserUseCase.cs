@@ -8,11 +8,16 @@ namespace Journey.Application.UseCases.Users.AuthenticateUser
 {
     public  class AuthenticateUserUseCase
     {
+        private readonly JourneyDbContext _dbContext;
+
+        public AuthenticateUserUseCase(JourneyDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
+
         public ResponseShortUserJson Execute(string username, string password)
         {
-            var dbContext = new JourneyDbContext();
-
-            var user = dbContext.Users.FirstOrDefault(user => user.Username == username);
+            var user = _dbContext.Users.FirstOrDefault(user => user.Username == username);
 
             var isPasswordValid = PasswordHandler.VerifyPassword(password, user.Password, user.Salt);
 

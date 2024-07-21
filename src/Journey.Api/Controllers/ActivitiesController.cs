@@ -13,6 +13,10 @@ namespace Journey.Api.Controllers
     [ApiController]
     public class ActivitiesController : ControllerBase
     {
+        private readonly RegisterActivityForTripUseCase _registerActivityForTripUseCase;
+        private readonly GetAllActivitiesByTripIdUseCase _getAllActivitiesByTripIdUseCase;
+        private readonly CompleteActivityForTripUseCase _completeActivityForTripUseCase;
+        private readonly DeleteActivityForTripUseCase _deleteActivityForTripUseCase;
 
         [HttpPost]
         [Route("{tripId}/activity")]
@@ -25,9 +29,7 @@ namespace Journey.Api.Controllers
            [FromRoute] Guid tripId,
            [FromBody] RequestRegisterActivityJson request)
         {
-            var useCase = new RegisterActivityForTripUseCase();
-
-            var response = useCase.Execute(tripId, request);
+            var response = _registerActivityForTripUseCase.Execute(tripId, request);
 
             return Created(string.Empty, response);
         }
@@ -41,9 +43,7 @@ namespace Journey.Api.Controllers
            [FromRoute] Guid tripId,
            [FromRoute] Guid activityId)
         {
-            var useCase = new CompleteActivityForTripUseCase();
-
-            useCase.Execute(tripId, activityId);
+            _completeActivityForTripUseCase.Execute(tripId, activityId);
 
             return NoContent();
         }
@@ -57,9 +57,7 @@ namespace Journey.Api.Controllers
            [FromRoute] Guid tripId,
            [FromRoute] Guid activityId)
         {
-            var useCase = new DeleteActivityForTripUseCase();
-
-            useCase.Execute(tripId, activityId);
+            _deleteActivityForTripUseCase.Execute(tripId, activityId);
 
             return NoContent();
         }
@@ -70,10 +68,7 @@ namespace Journey.Api.Controllers
         [ProducesResponseType(typeof(ResponseErrorsJson), StatusCodes.Status404NotFound)]
         public IActionResult GetActivitiesByTripId([FromRoute] Guid tripId)
         {
-            var useCase = new GetAllActivitiesByTripIdUseCase();
-
-            var response = useCase.Execute(tripId);
-
+            var response = _getAllActivitiesByTripIdUseCase.Execute(tripId);
 
             return Ok(response);
         }

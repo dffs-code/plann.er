@@ -9,14 +9,19 @@ namespace Journey.Application.UseCases.Users.Register
 {
     public class RegisterUserUseCase
     {
+        private readonly JourneyDbContext _dbContext;
+
+        public RegisterUserUseCase(JourneyDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
+
         public ResponseShortUserJson Execute(RequestRegisterUserJson request)
         {
             Validate(request);
 
             var salt = PasswordHandler.GenerateSalt();
             var hashedPassword = PasswordHandler.HashPassword(request.Password, salt);
-
-            var dbContext = new JourneyDbContext();
 
             var entity = new User
             {
@@ -27,9 +32,9 @@ namespace Journey.Application.UseCases.Users.Register
 
             };
 
-            dbContext.Users.Add(entity);
+            _dbContext.Users.Add(entity);
 
-            dbContext.SaveChanges();
+            _dbContext.SaveChanges();
 
             return new ResponseShortUserJson
             {

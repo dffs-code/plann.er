@@ -1,6 +1,5 @@
 ﻿using Journey.Communication.Requests;
 using Journey.Communication.Responses;
-using Journey.Exception;
 using Journey.Exception.ExceptionsBase;
 using Journey.Infrastructure;
 using Journey.Infrastructure.Entities;
@@ -9,11 +8,15 @@ namespace Journey.Application.UseCases.Trips.Register
 {
     public class RegisterTripUseCase
     {
+        private readonly JourneyDbContext _dbContext;
+
+        public RegisterTripUseCase(JourneyDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
         public ResponseShortTripJson Execute(RequestRegisterTripJson request)
         {
             Validate(request);
-
-            var dbContext = new JourneyDbContext();
 
             var entity = new Trip
             {
@@ -25,9 +28,9 @@ namespace Journey.Application.UseCases.Trips.Register
                 FullAddress = request.FullAddress,
             };
 
-            dbContext.Trips.Add(entity);
+            _dbContext.Trips.Add(entity);
 
-            dbContext.SaveChanges();
+            _dbContext.SaveChanges();
 
             return new ResponseShortTripJson
             {

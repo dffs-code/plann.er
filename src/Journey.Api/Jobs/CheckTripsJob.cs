@@ -6,6 +6,8 @@ namespace Journey.Api.Jobs
 {
     public class CheckTripsJob : IJob
     {
+        private readonly GetAllTripsUseCase _getAllTripsUseCase;
+
         private EmailService _emailService = new(
                 smtpServer: ResourceEmailConfig.SMTP_SERVER,
                 smtpPort: int.Parse(ResourceEmailConfig.SMTP_PORT),
@@ -16,9 +18,7 @@ namespace Journey.Api.Jobs
         {
             Console.WriteLine("Checking Trips: " + DateTime.Now);
 
-            var tripsUseCase = new GetAllTripsUseCase();
-
-            var tripsList = tripsUseCase.Execute();
+            var tripsList = _getAllTripsUseCase.Execute();
 
             Console.WriteLine(tripsList.Trips);
 

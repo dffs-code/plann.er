@@ -5,12 +5,16 @@ namespace Journey.Application.UseCases.Users.GetAll
 {
     public class GetAllUsersUseCase
     {
+        private readonly JourneyDbContext _dbContext;
+
+        public GetAllUsersUseCase(JourneyDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
+
         public ResponseUsersJson Execute()
         {
-            
-            var dbContext = new JourneyDbContext();
-
-            var users = dbContext.Users.ToList();
+            var users = _dbContext.Users.ToList();
 
             return new ResponseUsersJson
             {

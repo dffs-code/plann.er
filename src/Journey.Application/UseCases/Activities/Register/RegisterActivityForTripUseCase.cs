@@ -10,11 +10,15 @@ namespace Journey.Application.UseCases.Activities.Register
 {
     public class RegisterActivityForTripUseCase
     {
+        private readonly JourneyDbContext _dbContext;
+
+        public RegisterActivityForTripUseCase(JourneyDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
         public ResponseActivityJson Execute(Guid tripId, RequestRegisterActivityJson request)
         {
-            var dbContext = new JourneyDbContext();
-
-            var trip = dbContext
+            var trip = _dbContext
                 .Trips
                 .FirstOrDefault(trip => trip.Id == tripId);
 
@@ -27,9 +31,9 @@ namespace Journey.Application.UseCases.Activities.Register
                 TripId = tripId,
             };
 
-            dbContext.Activities.Add(entity);
+            _dbContext.Activities.Add(entity);
 
-            dbContext.SaveChanges();
+            _dbContext.SaveChanges();
 
             return new ResponseActivityJson
             {

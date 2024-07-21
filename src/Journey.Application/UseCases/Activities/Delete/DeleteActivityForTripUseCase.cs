@@ -6,18 +6,23 @@ namespace Journey.Application.UseCases.Activities.Delete
 {
     public class DeleteActivityForTripUseCase
     {
+        private readonly JourneyDbContext _dbContext;
+
+        public DeleteActivityForTripUseCase(JourneyDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
+
         public void Execute(Guid tripId, Guid activityId)
         {
-            var dbContext = new JourneyDbContext();
-
-            var activity = dbContext
+            var activity = _dbContext
                 .Activities
                 .FirstOrDefault(activity => activity.Id == activityId && activity.TripId == tripId);
 
             if (activity == null) throw new NotFoundException(ResourceErrorMessages.TRIP_NOT_FOUND);
 
-            dbContext.Activities.Remove(activity);
-            dbContext.SaveChanges();
+            _dbContext.Activities.Remove(activity);
+            _dbContext.SaveChanges();
         }
     }
 }

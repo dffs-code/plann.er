@@ -7,11 +7,16 @@ namespace Journey.Application.UseCases.Activities.Complete
 {
     public class CompleteActivityForTripUseCase
     {
+        private readonly JourneyDbContext _dbContext;
+
+        public CompleteActivityForTripUseCase(JourneyDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
+
         public void Execute(Guid tripId, Guid activityId)
         {
-            var dbContext = new JourneyDbContext();
-
-            var activity = dbContext
+            var activity = _dbContext
                 .Activities
                 .FirstOrDefault(activity => activity.Id == activityId && activity.TripId == tripId);
 
@@ -20,8 +25,8 @@ namespace Journey.Application.UseCases.Activities.Complete
 
             activity.Status = Infrastructure.Enums.ActivityStatus.Done;
 
-            dbContext.Activities.Update(activity);
-            dbContext.SaveChanges();
+            _dbContext.Activities.Update(activity);
+            _dbContext.SaveChanges();
         }
     }
 }
