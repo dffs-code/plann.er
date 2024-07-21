@@ -36,25 +36,17 @@ O projeto **Plann.er** tem como objetivo ajudar o usuário a organizar viagens �
     cd plann.er
     ```
 
-2. Configure a string de conexão com o banco de dados no arquivo `appsettings.json`:
-
-    ```json
-      "ConnectionStrings": {
-	"DefaultConnection": "Data Source=C:\\YOUR-PATH\\JourneyDatabase.db"
-	},
-    ```
-
-3. Restaure os pacotes NuGet:
+2. Restaure os pacotes NuGet:
     ```bash
     dotnet restore
     ```
 
-4. Inicie a aplicação:
+3. Inicie a aplicação:
     ```bash
     dotnet run
     ```
 
-5. A API estará disponível em `https://localhost:5001`.
+4. A API estará disponível em `https://localhost:5001`.
 
 ### Especificações da API
 

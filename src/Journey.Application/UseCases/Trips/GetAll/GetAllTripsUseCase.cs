@@ -27,6 +27,7 @@ namespace Journey.Application.UseCases.Trips.GetAll
                     Country = trip.Country,
                     City = trip.City,
                     FullAddress = trip.FullAddress,
+                    UserId = trip.User.Id.ToString(),
                     User = new ResponseShortUserJson
                     {
                         Id = trip.User.Id,
