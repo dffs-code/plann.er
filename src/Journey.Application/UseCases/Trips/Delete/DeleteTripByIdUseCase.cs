@@ -5,14 +5,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Journey.Application.UseCases.Trips.Delete
 {
-    public class DeleteTripByIdUseCase
+    public class DeleteTripByIdUseCase(JourneyDbContext dbContext)
     {
-        private readonly JourneyDbContext _dbContext;
+        private readonly JourneyDbContext _dbContext = dbContext;
 
-        public DeleteTripByIdUseCase(JourneyDbContext dbContext)
-        {
-            _dbContext = dbContext;
-        }
         public void Execute(Guid id)
         {
             var trip = _dbContext

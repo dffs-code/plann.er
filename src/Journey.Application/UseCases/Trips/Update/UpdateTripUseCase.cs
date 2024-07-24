@@ -7,13 +7,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Journey.Application.UseCases.Trips.Update
 {
-    public class UpdateTripUseCase
+    public class UpdateTripUseCase(JourneyDbContext dbContext)
     {
-        private readonly JourneyDbContext _dbContext;
-        public UpdateTripUseCase(JourneyDbContext dbContext)
-        {
-            _dbContext = dbContext;
-        }
+        private readonly JourneyDbContext _dbContext = dbContext;
+
         public ResponseShortTripJson Execute(Guid tripId, RequestRegisterTripJson request, string userId)
         {
             var trip = _dbContext
@@ -22,7 +19,7 @@ namespace Journey.Application.UseCases.Trips.Update
                 .FirstOrDefault(trip => trip.Id == tripId);
 
             if (trip == null) throw new NotFoundException(ResourceErrorMessages.TRIP_NOT_FOUND);
-            if (trip.UserId != Guid.Parse(userId)) 
+            if (trip.UserId != Guid.Parse(userId))
             {
                 IList<string> errorMessage = [ResourceErrorMessages.USER_UNAUTHORIZED];
                 throw new ErrorOnValidationException(errorMessage);

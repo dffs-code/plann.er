@@ -11,21 +11,14 @@ namespace Journey.Api.Controllers
 {
     [Route("api/users")]
     [ApiController]
-    public class UsersController : ControllerBase
+    public class UsersController (
+        AuthenticateUserUseCase authenticateUserUseCase,
+        GetAllUsersUseCase getAllUsersUseCase,
+        RegisterUserUseCase registerUserUseCase) : ControllerBase
     {
-        private readonly AuthenticateUserUseCase _authenticateUserUseCase;
-        private readonly GetAllUsersUseCase _getAllUsersUseCase;
-        private readonly RegisterUserUseCase _registerUserUseCase;
-
-        public UsersController(
-            AuthenticateUserUseCase authenticateUserUseCase, 
-            GetAllUsersUseCase getAllUsersUseCase, 
-            RegisterUserUseCase registerUserUseCase)
-        {
-            _authenticateUserUseCase = authenticateUserUseCase;
-            _getAllUsersUseCase = getAllUsersUseCase;
-            _registerUserUseCase = registerUserUseCase;
-        }
+        private readonly AuthenticateUserUseCase _authenticateUserUseCase = authenticateUserUseCase;
+        private readonly GetAllUsersUseCase _getAllUsersUseCase = getAllUsersUseCase;
+        private readonly RegisterUserUseCase _registerUserUseCase = registerUserUseCase;
 
         [HttpPost]
         [ProducesResponseType(typeof(ResponseShortUserJson), StatusCodes.Status201Created)]

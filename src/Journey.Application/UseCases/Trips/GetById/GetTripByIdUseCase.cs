@@ -6,14 +6,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Journey.Application.UseCases.Trips.GetById
 {
-    public class GetTripByIdUseCase
+    public class GetTripByIdUseCase(JourneyDbContext dbContext)
     {
-        private readonly JourneyDbContext _dbContext;
+        private readonly JourneyDbContext _dbContext = dbContext;
 
-        public GetTripByIdUseCase(JourneyDbContext dbContext)
-        {
-            _dbContext = dbContext;
-        }
         public ResponseTripJson Execute(Guid id)
         {
             var trip = _dbContext

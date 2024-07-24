@@ -8,10 +8,8 @@ namespace Journey.Application.UseCases.Users.Common
         public static string GenerateSalt()
         {
             byte[] saltBytes = new byte[16];
-            using (var rng = new RNGCryptoServiceProvider())
-            {
-                rng.GetBytes(saltBytes);
-            }
+            RandomNumberGenerator.Fill(saltBytes);
+
             return Convert.ToBase64String(saltBytes);
         }
 

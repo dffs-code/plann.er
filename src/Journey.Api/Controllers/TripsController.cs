@@ -13,28 +13,18 @@ namespace Journey.Api.Controllers
 {
     [Route("api/trips")]
     [ApiController]
-    public class TripsController : ControllerBase
+    public class TripsController(
+        GetAllTripsUseCase getAllTripsUseCase,
+        RegisterTripUseCase registerTripUseCase,
+        DeleteTripByIdUseCase deleteTripByIdUseCase,
+        GetTripByIdUseCase getTripByIdUseCase,
+        UpdateTripUseCase updateTripUseCase) : ControllerBase
     {
-        private readonly GetAllTripsUseCase _getAllTripsUseCase;
-        private readonly RegisterTripUseCase _registerTripUseCase;
-        private readonly DeleteTripByIdUseCase _deleteTripByIdUseCase;
-        private readonly GetTripByIdUseCase _getTripByIdUseCase;
-        private readonly UpdateTripUseCase _updateTripUseCase;
-
-        public TripsController(
-            GetAllTripsUseCase getAllTripsUseCase, 
-            RegisterTripUseCase registerTripUseCase,
-            DeleteTripByIdUseCase deleteTripByIdUseCase,
-            GetTripByIdUseCase getTripByIdUseCase,
-            UpdateTripUseCase updateTripUseCase)
-        {
-            _getAllTripsUseCase = getAllTripsUseCase;
-            _registerTripUseCase = registerTripUseCase;
-            _deleteTripByIdUseCase = deleteTripByIdUseCase;
-            _getTripByIdUseCase = getTripByIdUseCase;
-            _getTripByIdUseCase = getTripByIdUseCase;
-            _updateTripUseCase = updateTripUseCase;
-        }
+        private readonly GetAllTripsUseCase _getAllTripsUseCase = getAllTripsUseCase;
+        private readonly RegisterTripUseCase _registerTripUseCase = registerTripUseCase;
+        private readonly DeleteTripByIdUseCase _deleteTripByIdUseCase = deleteTripByIdUseCase;
+        private readonly GetTripByIdUseCase _getTripByIdUseCase = getTripByIdUseCase;
+        private readonly UpdateTripUseCase _updateTripUseCase = updateTripUseCase;
 
         [HttpPost]
         [Authorize]
@@ -83,7 +73,7 @@ namespace Journey.Api.Controllers
         }
 
         [HttpPut]
-        [Route("{tripId}")]
+        [Route("{id}")]
         [Authorize]
         [ProducesResponseType(typeof(ResponseShortTripJson), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]

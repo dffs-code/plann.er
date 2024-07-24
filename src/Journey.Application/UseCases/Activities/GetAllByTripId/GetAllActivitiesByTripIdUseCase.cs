@@ -3,18 +3,13 @@ using Journey.Infrastructure;
 
 namespace Journey.Application.UseCases.Activities.GetAllByTripId
 {
-    public class GetAllActivitiesByTripIdUseCase
+    public class GetAllActivitiesByTripIdUseCase(JourneyDbContext dbContext)
     {
-        private readonly JourneyDbContext _dbContext;
-
-        public GetAllActivitiesByTripIdUseCase(JourneyDbContext dbContext)
-        {
-            _dbContext = dbContext;
-        }
+        private readonly JourneyDbContext _dbContext = dbContext;
 
         public ResponseActivitiesJson Execute(Guid tripId)
         {
-            
+
             var activities = _dbContext.Activities.Where(activity => activity.TripId == tripId).ToList();
 
             return new ResponseActivitiesJson

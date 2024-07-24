@@ -11,25 +11,17 @@ namespace Journey.Api.Controllers
 {
     [Route("api/trips/")]
     [ApiController]
-    public class ActivitiesController : ControllerBase
+    public class ActivitiesController (
+        RegisterActivityForTripUseCase registerActivityForTripUseCase,
+        GetAllActivitiesByTripIdUseCase getAllActivitiesByTripIdUseCase,
+        CompleteActivityForTripUseCase completeActivityForTripUseCase,
+        DeleteActivityForTripUseCase deleteActivityForTripUseCase
+        ) : ControllerBase
     {
-        private readonly RegisterActivityForTripUseCase _registerActivityForTripUseCase;
-        private readonly GetAllActivitiesByTripIdUseCase _getAllActivitiesByTripIdUseCase;
-        private readonly CompleteActivityForTripUseCase _completeActivityForTripUseCase;
-        private readonly DeleteActivityForTripUseCase _deleteActivityForTripUseCase;
-
-        public ActivitiesController(
-            RegisterActivityForTripUseCase registerActivityForTripUseCase,
-            GetAllActivitiesByTripIdUseCase getAllActivitiesByTripIdUseCase,
-            CompleteActivityForTripUseCase completeActivityForTripUseCase,
-            DeleteActivityForTripUseCase deleteActivityForTripUseCase
-            )
-        {
-            _registerActivityForTripUseCase = registerActivityForTripUseCase;
-            _getAllActivitiesByTripIdUseCase = getAllActivitiesByTripIdUseCase;
-            _completeActivityForTripUseCase = completeActivityForTripUseCase;
-            _deleteActivityForTripUseCase = deleteActivityForTripUseCase;
-        }
+        private readonly RegisterActivityForTripUseCase _registerActivityForTripUseCase = registerActivityForTripUseCase;
+        private readonly GetAllActivitiesByTripIdUseCase _getAllActivitiesByTripIdUseCase = getAllActivitiesByTripIdUseCase;
+        private readonly CompleteActivityForTripUseCase _completeActivityForTripUseCase = completeActivityForTripUseCase;
+        private readonly DeleteActivityForTripUseCase _deleteActivityForTripUseCase = deleteActivityForTripUseCase;
 
         [HttpPost]
         [Route("{tripId}/activity")]

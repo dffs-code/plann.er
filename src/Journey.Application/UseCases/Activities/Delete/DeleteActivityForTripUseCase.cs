@@ -4,14 +4,9 @@ using Journey.Infrastructure;
 
 namespace Journey.Application.UseCases.Activities.Delete
 {
-    public class DeleteActivityForTripUseCase
+    public class DeleteActivityForTripUseCase(JourneyDbContext dbContext)
     {
-        private readonly JourneyDbContext _dbContext;
-
-        public DeleteActivityForTripUseCase(JourneyDbContext dbContext)
-        {
-            _dbContext = dbContext;
-        }
+        private readonly JourneyDbContext _dbContext = dbContext;
 
         public void Execute(Guid tripId, Guid activityId)
         {

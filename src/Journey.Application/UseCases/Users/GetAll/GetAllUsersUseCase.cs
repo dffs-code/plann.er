@@ -3,14 +3,9 @@ using Journey.Infrastructure;
 
 namespace Journey.Application.UseCases.Users.GetAll
 {
-    public class GetAllUsersUseCase
+    public class GetAllUsersUseCase(JourneyDbContext dbContext)
     {
-        private readonly JourneyDbContext _dbContext;
-
-        public GetAllUsersUseCase(JourneyDbContext dbContext)
-        {
-            _dbContext = dbContext;
-        }
+        private readonly JourneyDbContext _dbContext = dbContext;
 
         public ResponseUsersJson Execute()
         {
@@ -22,6 +17,7 @@ namespace Journey.Application.UseCases.Users.GetAll
                 {
                     Id = user.Id,
                     Username = user.Username,
+                    Email = user.Email,
                 }).ToList(),
             };
         }

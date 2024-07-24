@@ -7,14 +7,9 @@ using Journey.Infrastructure.Entities;
 
 namespace Journey.Application.UseCases.Users.Register
 {
-    public class RegisterUserUseCase
+    public class RegisterUserUseCase(JourneyDbContext dbContext)
     {
-        private readonly JourneyDbContext _dbContext;
-
-        public RegisterUserUseCase(JourneyDbContext dbContext)
-        {
-            _dbContext = dbContext;
-        }
+        private readonly JourneyDbContext _dbContext = dbContext;
 
         public ResponseShortUserJson Execute(RequestRegisterUserJson request)
         {

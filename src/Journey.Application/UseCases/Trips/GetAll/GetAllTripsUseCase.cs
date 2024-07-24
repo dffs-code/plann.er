@@ -4,14 +4,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Journey.Application.UseCases.Trips.GetAll
 {
-    public class GetAllTripsUseCase
+    public class GetAllTripsUseCase(JourneyDbContext dbContext)
     {
-        private readonly JourneyDbContext _dbContext;
+        private readonly JourneyDbContext _dbContext = dbContext;
 
-        public GetAllTripsUseCase(JourneyDbContext dbContext)
-        {
-            _dbContext = dbContext;
-        }
         public ResponseTripsJson Execute()
         {
             var trips = _dbContext.Trips.Include(trip => trip.User).ToList();

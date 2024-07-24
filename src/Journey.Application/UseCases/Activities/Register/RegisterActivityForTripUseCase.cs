@@ -8,14 +8,10 @@ using Journey.Infrastructure.Entities;
 
 namespace Journey.Application.UseCases.Activities.Register
 {
-    public class RegisterActivityForTripUseCase
+    public class RegisterActivityForTripUseCase(JourneyDbContext dbContext)
     {
-        private readonly JourneyDbContext _dbContext;
+        private readonly JourneyDbContext _dbContext = dbContext;
 
-        public RegisterActivityForTripUseCase(JourneyDbContext dbContext)
-        {
-            _dbContext = dbContext;
-        }
         public ResponseActivityJson Execute(Guid tripId, RequestRegisterActivityJson request)
         {
             var trip = _dbContext
@@ -53,12 +49,12 @@ namespace Journey.Application.UseCases.Activities.Register
 
             var result = validator.Validate(request);
 
-            if(!(request.Date >= trip.StartDate && request.Date <= trip.EndDate))
+            if (!(request.Date >= trip.StartDate && request.Date <= trip.EndDate))
             {
                 result.Errors.Add(new ValidationFailure("Date", ResourceErrorMessages.DATE_NOT_WITHIN_TRAVEL_PERIOD));
             }
 
-            if(!result.IsValid)
+            if (!result.IsValid)
             {
                 var errorMessages = result.Errors.Select(error => error.ErrorMessage).ToList();
 

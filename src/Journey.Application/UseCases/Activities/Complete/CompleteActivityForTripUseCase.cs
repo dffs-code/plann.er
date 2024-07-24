@@ -5,14 +5,9 @@ using Journey.Infrastructure;
 
 namespace Journey.Application.UseCases.Activities.Complete
 {
-    public class CompleteActivityForTripUseCase
+    public class CompleteActivityForTripUseCase(JourneyDbContext dbContext)
     {
-        private readonly JourneyDbContext _dbContext;
-
-        public CompleteActivityForTripUseCase(JourneyDbContext dbContext)
-        {
-            _dbContext = dbContext;
-        }
+        private readonly JourneyDbContext _dbContext = dbContext;
 
         public void Execute(Guid tripId, Guid activityId)
         {

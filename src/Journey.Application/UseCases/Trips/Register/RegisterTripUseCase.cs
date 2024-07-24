@@ -6,14 +6,10 @@ using Journey.Infrastructure.Entities;
 
 namespace Journey.Application.UseCases.Trips.Register
 {
-    public class RegisterTripUseCase
+    public class RegisterTripUseCase(JourneyDbContext dbContext)
     {
-        private readonly JourneyDbContext _dbContext;
+        private readonly JourneyDbContext _dbContext = dbContext;
 
-        public RegisterTripUseCase(JourneyDbContext dbContext)
-        {
-            _dbContext = dbContext;
-        }
         public ResponseShortTripJson Execute(RequestRegisterTripJson request, string userId)
         {
             Validate(request);
@@ -29,7 +25,7 @@ namespace Journey.Application.UseCases.Trips.Register
                 FullAddress = request.FullAddress,
             };
 
-            var user = _dbContext.Users.FirstOrDefault(Users => Users.Id == Guid.Parse(userId));  
+            var user = _dbContext.Users.FirstOrDefault(Users => Users.Id == Guid.Parse(userId));
 
             _dbContext.Trips.Add(entity);
 
