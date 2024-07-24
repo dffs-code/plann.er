@@ -4,9 +4,9 @@ using Quartz;
 
 namespace Journey.Api.Jobs
 {
-    public class CheckTripsJob : IJob
+    public class CheckTripsJob(GetAllTripsUseCase getAllTripsUseCase) : IJob
     {
-        private readonly GetAllTripsUseCase _getAllTripsUseCase;
+        private readonly GetAllTripsUseCase _getAllTripsUseCase = getAllTripsUseCase;
 
         private EmailService _emailService = new(
                 smtpServer: ResourceEmailConfig.SMTP_SERVER,
