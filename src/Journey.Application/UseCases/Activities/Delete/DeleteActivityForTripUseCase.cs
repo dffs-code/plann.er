@@ -14,7 +14,7 @@ namespace Journey.Application.UseCases.Activities.Delete
                 .Activities
                 .FirstOrDefault(activity => activity.Id == activityId && activity.TripId == tripId);
 
-            if (activity == null) throw new NotFoundException(ResourceErrorMessages.TRIP_NOT_FOUND);
+            if (activity == null) throw new ErrorOnValidationException([ResourceErrorMessages.TRIP_NOT_FOUND]);
 
             _dbContext.Activities.Remove(activity);
             _dbContext.SaveChanges();

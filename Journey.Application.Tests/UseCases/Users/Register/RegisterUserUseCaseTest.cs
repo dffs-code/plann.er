@@ -7,7 +7,7 @@ using Journey.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 
 
-namespace Journey.Application.Tests.UseCases.Users.Register
+namespace Journey.Application.UnitTests.UseCases.Users.Register
 {
     public class RegisterUserUseCaseTest
     {

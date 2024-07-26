@@ -6,7 +6,7 @@ using Journey.Infrastructure;
 using Journey.Infrastructure.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace Journey.Application.Tests.UseCases.Users.AuthenticateUser
+namespace Journey.Application.UnitTests.UseCases.Users.AuthenticateUser
 {
     public class AuthenticateUserUseCaseTests
     {
