@@ -1,5 +1,5 @@
 ﻿using Journey.Api.Services;
-using Journey.Application.UseCases.Users.AuthenticateUser;
+using Journey.Application.UseCases.Users.Authenticate;
 using Journey.Application.UseCases.Users.GetAll;
 using Journey.Application.UseCases.Users.Register;
 using Journey.Communication.Requests;

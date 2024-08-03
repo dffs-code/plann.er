@@ -10,7 +10,7 @@ using Journey.Application.UseCases.Trips.GetAll;
 using Journey.Application.UseCases.Trips.GetById;
 using Journey.Application.UseCases.Trips.Register;
 using Journey.Application.UseCases.Trips.Update;
-using Journey.Application.UseCases.Users.AuthenticateUser;
+using Journey.Application.UseCases.Users.Authenticate;
 using Journey.Application.UseCases.Users.GetAll;
 using Journey.Application.UseCases.Users.Register;
 using Journey.Infrastructure;

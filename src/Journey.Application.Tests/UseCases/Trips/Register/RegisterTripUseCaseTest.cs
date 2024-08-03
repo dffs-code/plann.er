@@ -21,8 +21,8 @@ namespace Journey.Application.UnitTests.UseCases.Trips.Register
             var request = new RequestRegisterTripJson
             {
                 Name = "Business Trip",
-                StartDate = new DateTime(2024, 8, 1),
-                EndDate = new DateTime(2024, 8, 5),
+                StartDate = DateTime.Today,
+                EndDate = DateTime.Today.AddDays(5),
                 Country = "USA",
                 City = "New York",
                 FullAddress = "123 Main St, New York, NY"
@@ -69,8 +69,8 @@ namespace Journey.Application.UnitTests.UseCases.Trips.Register
             var request = new RequestRegisterTripJson
             {
                 Name = "", // Invalid name
-                StartDate = new DateTime(2024, 8, 1),
-                EndDate = new DateTime(2024, 8, 5),
+                StartDate = DateTime.Today,
+                EndDate = DateTime.Today.AddDays(5),
                 Country = "", // Invalid country
                 City = "New York",
                 FullAddress = ""
@@ -110,8 +110,8 @@ namespace Journey.Application.UnitTests.UseCases.Trips.Register
             var request = new RequestRegisterTripJson
             {
                 Name = "Business Trip",
-                StartDate = new DateTime(2024, 8, 1),
-                EndDate = new DateTime(2024, 8, 5),
+                StartDate = DateTime.Today,
+                EndDate = DateTime.Today.AddDays(5),
                 Country = "USA",
                 City = "New York",
                 FullAddress = "123 Main St, New York, NY"

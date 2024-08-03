@@ -4,7 +4,7 @@ using Journey.Exception;
 using Journey.Exception.ExceptionsBase;
 using Journey.Infrastructure;
 
-namespace Journey.Application.UseCases.Users.AuthenticateUser
+namespace Journey.Application.UseCases.Users.Authenticate
 {
     public class AuthenticateUserUseCase(JourneyDbContext dbContext)
     {

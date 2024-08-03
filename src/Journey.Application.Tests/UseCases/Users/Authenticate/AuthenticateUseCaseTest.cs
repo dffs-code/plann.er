@@ -1,4 +1,4 @@
-﻿using Journey.Application.UseCases.Users.AuthenticateUser;
+﻿using Journey.Application.UseCases.Users.Authenticate;
 using Journey.Application.UseCases.Users.Common;
 using Journey.Exception;
 using Journey.Exception.ExceptionsBase;
@@ -6,7 +6,7 @@ using Journey.Infrastructure;
 using Journey.Infrastructure.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace Journey.Application.UnitTests.UseCases.Users.AuthenticateUser
+namespace Journey.Application.UnitTests.UseCases.Users.Authenticate
 {
     public class AuthenticateUserUseCaseTests
     {
