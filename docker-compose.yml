@@ -1,0 +1,12 @@
+version: '3.4'
+
+services:
+  planner:
+    image: journey
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5000:8080"
+volumes:
+  journey-data:
