@@ -40,7 +40,7 @@ O projeto **Plann.er** tem como objetivo ajudar o usuário a organizar viagens �
     docker compose up
     ```
 
-3. A API estará disponível em `http://localhost:5001`.
+3. A API estará disponível em `http://localhost:5000`.
 
 ### Especificações da API
 
