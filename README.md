@@ -25,8 +25,7 @@ O projeto **Plann.er** tem como objetivo ajudar o usuário a organizar viagens �
 
 #### Pré-requisitos
 
-- .NET SDK 8.0 ou superior
-- Visual Studio ou VS Code
+- Docker
 
 #### Passos
 
@@ -36,17 +35,12 @@ O projeto **Plann.er** tem como objetivo ajudar o usuário a organizar viagens �
     cd plann.er
     ```
 
-2. Restaure os pacotes NuGet:
+2. Inicie a aplicação com Docker Compose:
     ```bash
-    dotnet restore
+    docker compose up
     ```
 
-3. Inicie a aplicação:
-    ```bash
-    dotnet run
-    ```
-
-4. A API estará disponível em `https://localhost:5001`.
+3. A API estará disponível em `http://localhost:5001`.
 
 ### Especificações da API
 
